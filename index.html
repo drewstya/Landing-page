@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Pintu Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-white">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Toko Pintu Modern</h1>
+        <p class="text-lg md:text-xl mb-6 max-w-xl">Jual berbagai jenis pintu minimalis dengan layanan pasang profesional.</p>
+        <a href="#pesan" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition">Pesan Sekarang</a>
+    </section>
+
+    <section class="py-12 px-6 bg-gray-100" id="produk">
+        <h2 class="text-3xl font-bold text-center mb-10">Katalog Pintu</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-white rounded-xl shadow p-4">
+                <img src="https://via.placeholder.com/400x250?text=Pintu+1" alt="Pintu 1" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu Minimalis Putih</h3>
+                <p class="text-sm text-gray-600">Tampilan elegan cocok untuk rumah modern.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-4">
+                <img src="https://via.placeholder.com/400x250?text=Pintu+2" alt="Pintu 2" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu Klasik Kayu</h3>
+                <p class="text-sm text-gray-600">Bahan kuat dan tahan lama, nuansa alami.</p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-4">
+                <img src="https://via.placeholder.com/400x250?text=Pintu+3" alt="Pintu 3" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu Geser Modern</h3>
+                <p class="text-sm text-gray-600">Hemat ruang, cocok untuk desain minimalis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-6 bg-white" id="pesan">
+        <h2 class="text-3xl font-bold text-center mb-10">Form Pemesanan</h2>
+        <form onsubmit="return false;" class="max-w-xl mx-auto bg-gray-100 p-6 rounded-xl shadow space-y-4">
+            <input type="text" id="nama" placeholder="Nama Anda" class="w-full p-3 rounded border border-gray-300" required>
+            <input type="tel" id="wa" placeholder="Nomor WhatsApp" class="w-full p-3 rounded border border-gray-300" required>
+            <select id="produk" class="w-full p-3 rounded border border-gray-300">
+                <option value="Pintu Minimalis Putih">Pintu Minimalis Putih</option>
+                <option value="Pintu Klasik Kayu">Pintu Klasik Kayu</option>
+                <option value="Pintu Geser Modern">Pintu Geser Modern</option>
+            </select>
+            <input type="number" id="jumlahSet" placeholder="Jumlah Set Pintu" class="w-full p-3 rounded border border-gray-300" required oninput="hitungOngkir()">
+            <textarea id="alamat" placeholder="Alamat Lengkap & Catatan" class="w-full p-3 rounded border border-gray-300" rows="4"></textarea>
+            <div id="infoKendaraan" class="text-sm text-gray-700 mt-2"></div>
+            <div id="ongkir" class="font-bold text-lg text-blue-700 mt-1"></div>
+            <button onclick="kirimPesanan()" class="w-full text-center bg-green-500 text-white py-3 rounded hover:bg-green-600 transition">Kirim via WhatsApp</button>
+        </form>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 py-6">
+        © 2025 TokoPintu.id
+    </footer>
+
+    <script>
+        let jenisMobil = '';
+        let biaya = 0;
+
+        function hitungOngkir() {
+            const jumlah = parseInt(document.getElementById("jumlahSet").value);
+            const info = document.getElementById("infoKendaraan");
+            const ongkir = document.getElementById("ongkir");
+
+            if (isNaN(jumlah) || jumlah < 1) {
+                info.innerText = '';
+                ongkir.innerText = '';
+                jenisMobil = '';
+                biaya = 0;
+                return;
+            }
+
+            if (jumlah === 1) {
+                jenisMobil = 'MPV';
+                biaya = 50000;
+            } else if (jumlah > 1 && jumlah < 7) {
+                jenisMobil = 'Van';
+                biaya = 80000;
+            } else {
+                jenisMobil = 'Pickup';
+                biaya = 120000;
+            }
+
+            info.innerText = `Jenis kendaraan otomatis: ${jenisMobil}`;
+            ongkir.innerText = `Estimasi Ongkir: Rp ${biaya.toLocaleString('id-ID')}`;
+        }
+
+        function kirimPesanan() {
+            const nama = document.getElementById("nama").value;
+            const wa = document.getElementById("wa").value;
+            const produk = document.getElementById("produk").value;
+            const jumlah = document.getElementById("jumlahSet").value;
+            const alamat = document.getElementById("alamat").value;
+
+            if (!nama || !wa || !produk || !jumlah || !alamat) {
+                alert("Mohon lengkapi semua data terlebih dahulu.");
+                return;
+            }
+
+            const pesan = `Halo, saya ingin memesan:
+
+Nama: ${nama}
+No. WhatsApp: ${wa}
+Produk: ${produk}
+Jumlah Set: ${jumlah}
+Jenis Kendaraan: ${jenisMobil}
+Estimasi Ongkir: Rp ${biaya.toLocaleString('id-ID')}
+
+Alamat:
+${alamat}`;
+            const nomorTujuan = "6281234567890";
+            const url = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
