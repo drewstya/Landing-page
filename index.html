@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -19,19 +18,19 @@
         <h2 class="text-3xl font-bold text-center mb-10">Katalog Pintu</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div class="bg-white rounded-xl shadow p-4">
-                <img src="https://via.placeholder.com/400x250?text=Pintu+1" alt="Pintu 1" class="rounded mb-4">
-                <h3 class="text-xl font-semibold mb-2">Pintu Minimalis Putih</h3>
-                <p class="text-sm text-gray-600">Tampilan elegan cocok untuk rumah modern.</p>
+                <img src="https://via.placeholder.com/400x250?text=Pintu+UPVC" alt="Pintu UPVC" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu UPVC</h3>
+                <p class="text-sm text-gray-600">Pintu tahan air, anti rayap, cocok untuk area lembap.</p>
             </div>
             <div class="bg-white rounded-xl shadow p-4">
-                <img src="https://via.placeholder.com/400x250?text=Pintu+2" alt="Pintu 2" class="rounded mb-4">
-                <h3 class="text-xl font-semibold mb-2">Pintu Klasik Kayu</h3>
-                <p class="text-sm text-gray-600">Bahan kuat dan tahan lama, nuansa alami.</p>
+                <img src="https://via.placeholder.com/400x250?text=Slim+Door" alt="Pintu Slim Door" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu Slim Door (Aluminium + PVC)</h3>
+                <p class="text-sm text-gray-600">Desain elegan dan ringan, kombinasi material aluminium dan PVC.</p>
             </div>
             <div class="bg-white rounded-xl shadow p-4">
-                <img src="https://via.placeholder.com/400x250?text=Pintu+3" alt="Pintu 3" class="rounded mb-4">
-                <h3 class="text-xl font-semibold mb-2">Pintu Geser Modern</h3>
-                <p class="text-sm text-gray-600">Hemat ruang, cocok untuk desain minimalis.</p>
+                <img src="https://via.placeholder.com/400x250?text=Pintu+Baja" alt="Pintu Baja" class="rounded mb-4">
+                <h3 class="text-xl font-semibold mb-2">Pintu Baja</h3>
+                <p class="text-sm text-gray-600">Keamanan tinggi, kuat dan tahan lama, cocok untuk pintu utama.</p>
             </div>
         </div>
     </section>
@@ -42,9 +41,9 @@
             <input type="text" id="nama" placeholder="Nama Anda" class="w-full p-3 rounded border border-gray-300" required>
             <input type="tel" id="wa" placeholder="Nomor WhatsApp" class="w-full p-3 rounded border border-gray-300" required>
             <select id="produk" class="w-full p-3 rounded border border-gray-300">
-                <option value="Pintu Minimalis Putih">Pintu Minimalis Putih</option>
-                <option value="Pintu Klasik Kayu">Pintu Klasik Kayu</option>
-                <option value="Pintu Geser Modern">Pintu Geser Modern</option>
+                <option value="Pintu UPVC">Pintu UPVC</option>
+                <option value="Pintu Slim Door (Aluminium + PVC)">Pintu Slim Door (Aluminium + PVC)</option>
+                <option value="Pintu Baja">Pintu Baja</option>
             </select>
             <input type="number" id="jumlahSet" placeholder="Jumlah Set Pintu" class="w-full p-3 rounded border border-gray-300" required oninput="hitungOngkir()">
             <textarea id="alamat" placeholder="Alamat Lengkap & Catatan" class="w-full p-3 rounded border border-gray-300" rows="4"></textarea>
@@ -102,17 +101,7 @@
                 return;
             }
 
-            const pesan = `Halo, saya ingin memesan:
-
-Nama: ${nama}
-No. WhatsApp: ${wa}
-Produk: ${produk}
-Jumlah Set: ${jumlah}
-Jenis Kendaraan: ${jenisMobil}
-Estimasi Ongkir: Rp ${biaya.toLocaleString('id-ID')}
-
-Alamat:
-${alamat}`;
+            const pesan = `Halo, saya ingin memesan:\n\nNama: ${nama}\nNo. WhatsApp: ${wa}\nProduk: ${produk}\nJumlah Set: ${jumlah}\nJenis Kendaraan: ${jenisMobil}\nEstimasi Ongkir: Rp ${biaya.toLocaleString('id-ID')}\n\nAlamat:\n${alamat}`;
             const nomorTujuan = "6281234567890";
             const url = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`;
             window.open(url, '_blank');
